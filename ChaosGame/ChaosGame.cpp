@@ -11,6 +11,7 @@ int main()
 	RenderWindow window(vm, "Chaos Game", Style::Default);
 
 	bool paused = true;
+	bool acceptInput = false;
 
 	Font font;
 	font.loadFromFile("fonts/arial.ttf");
@@ -27,12 +28,27 @@ int main()
 		textRect.top + textRect.height / 2.0f);
 	text.setPosition(1920 / 2.0f, 1080 / 20.0f);
 
+	vector<double> coordinates;
 
 	while(window.isOpen())
 	{
+		Event event;
+		while(window.pollEvent(event))
+		{
+			if(event.type == Event::KeyReleased && !paused)
+			{
+				acceptInput = true;
+			}
+		}
+
 		if(Keyboard::isKeyPressed(Keyboard::Escape))
 		{
 			window.close();
+		}
+
+		if(event.type == sf::Event::MouseButtonPressed)
+		{
+			paused = false;
 		}
 
 		window.draw(text);
