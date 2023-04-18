@@ -37,10 +37,15 @@ int main()
 		Event event;
 		while(window.pollEvent(event))
 		{
-			/*if(event.type == Event::KeyReleased)
+			if(event.type == Event::Closed)
 			{
-				acceptInput = true;
-			}*/
+				window.close();
+			}
+		}
+
+		if(Keyboard::isKeyPressed(Keyboard::Escape))
+		{
+			window.close();
 		}
 
 		window.setView(view);
