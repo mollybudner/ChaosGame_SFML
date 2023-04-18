@@ -12,7 +12,7 @@ int main()
 
 	Texture textureBackground;
 	Font font;
-	font.loadFromFile("arial.ttf");
+	font.loadFromFile("fonts/arial.ttf");
 	Text text;
 	text.setFont(font);
 
