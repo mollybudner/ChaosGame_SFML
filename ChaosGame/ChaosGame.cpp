@@ -28,9 +28,9 @@ int main()
 	text.setPosition(1920 / 2.0f, 1080 / 20.0f);
 
 	//vector for first 3 clicks
-	vector<Vector2f> verticesVect;
+	vector<Vector2f> vertices;
 	//vector of all points
-	vector<Vector2f> pointsVect;
+	vector<Vector2f> points;
 
 	while(window.isOpen())
 	{
@@ -41,8 +41,19 @@ int main()
 			{
 				window.close();
 			}
+			if(event.type == sf::Event::MouseButtonPressed)
+			{
+				if(event.mouseButton.button == sf::Mouse::Left)
+				{
+					std::cout << "the left button was pressed" << std::endl;
+					std::cout << "mouse x: " << event.mouseButton.x << std::endl;
+					std::cout << "mouse y: " << event.mouseButton.y << std::endl;
+					vertices.push_back(Vector2f({(float)event.mouseButton.x, (float)event.mouseButton.y}));
+				}
+			}
 		}
 
+		//close game with ESC key
 		if(Keyboard::isKeyPressed(Keyboard::Escape))
 		{
 			window.close();
@@ -50,6 +61,15 @@ int main()
 
 		window.setView(view);
 		window.clear();
+
+		//Draw game scene
+		RectangleShape r{Vector2f{4, 4}}; //width, height. Center unintialized.
+		for(size_t i = 0; i < vertices.size(); i++)
+		{
+			r.setPosition(Vector2f{vertices.at(i).x, vertices.at(i).y});
+			window.draw(r);
+		}
+
 		//display stuff
 		window.draw(text);
 		window.display();
