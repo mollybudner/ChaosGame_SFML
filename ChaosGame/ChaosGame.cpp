@@ -10,7 +10,6 @@ int main()
 	VideoMode vm(1920, 1080);
 	RenderWindow window(vm, "Chaos Game", Style::Default);
 
-	bool paused = true;
 	bool acceptInput = false;
 
 	Font font;
@@ -19,7 +18,7 @@ int main()
 	Text text;
 	text.setFont(font);
 
-	//Display intro text
+	//format intro text
 	text.setString("Please click 3 times to create your triangle. Then, click anywhere to start the animation.");
 	text.setCharacterSize(25);
 	text.setFillColor(Color::White);
@@ -28,14 +27,17 @@ int main()
 		textRect.top + textRect.height / 2.0f);
 	text.setPosition(1920 / 2.0f, 1080 / 20.0f);
 
-	vector<double> coordinates;
+	//vector for first 3 clicks
+	vector<Vector2f> verticesVect;
+	//vector of all points
+	vector<Vector2f> pointsVect;
 
 	while(window.isOpen())
 	{
 		Event event;
 		while(window.pollEvent(event))
 		{
-			if(event.type == Event::KeyReleased && !paused)
+			if(event.type == Event::KeyReleased)
 			{
 				acceptInput = true;
 			}
@@ -46,14 +48,17 @@ int main()
 			window.close();
 		}
 
-		if(event.type == sf::Event::MouseButtonPressed)
-		{
-			paused = false;
-		}
-
+		//display stuff
 		window.draw(text);
 		window.display();
 	}
 
 	return 0;
 }
+
+
+//starting game need vertextVector and pointsVector
+//3 clicks push back coordinates to vertex vector
+//on 4th click, start game
+//pick midpoint (100 at a time?) using 4th click, then push back to points vector
+//draw vertices and points Rectangle r({1,1}); r.setPosition(pointsVect[i].x, pointsVect[i].y);
