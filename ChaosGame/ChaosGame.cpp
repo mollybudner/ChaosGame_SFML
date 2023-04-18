@@ -48,11 +48,27 @@ int main()
 					std::cout << "the left button was pressed" << std::endl;
 					std::cout << "mouse x: " << event.mouseButton.x << std::endl;
 					std::cout << "mouse y: " << event.mouseButton.y << std::endl;
-					vertices.push_back(Vector2f({(float)event.mouseButton.x, (float)event.mouseButton.y}));
+					if(vertices.size() <= 3)
+					{
+						vertices.push_back(Vector2f({(float)event.mouseButton.x, (float)event.mouseButton.y}));
+					}
+					else
+					{
+						points.push_back(Vector2f({(float)event.mouseButton.x, (float)event.mouseButton.y}));
+					}
 				}
 			}
 		}
 
+/*		if(points.size() > 0)
+		{
+			srand(time(0));
+			int randVertex = rand() % 2;
+			Vector2f midpoint = {((vertices.at(randVertex).x + points.at(points.size() - 1).x / 2),
+						((vertices.at(randVertex).y + points.at(points.size() - 1).y) / 2);
+			points.push_back(midpoint);
+		}
+*/
 		//close game with ESC key
 		if(Keyboard::isKeyPressed(Keyboard::Escape))
 		{
