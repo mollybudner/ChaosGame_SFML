@@ -1,5 +1,7 @@
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include <iostream>
+#include <sstream>
 
 using namespace sf;
 using namespace std;
@@ -8,9 +10,7 @@ int main()
 {
 	sf::View view(sf::FloatRect(0.f, 0.f, 1920.f, 1080.f));
 	VideoMode vm(1920, 1080);
-	RenderWindow window(vm, "Chaos Game", Style::Default);
-
-	bool acceptInput = false;
+	RenderWindow window(vm, "Chaos Game", Style::Fullscreen);
 
 	Font font;
 	font.loadFromFile("fonts/arial.ttf");
@@ -37,17 +37,14 @@ int main()
 		Event event;
 		while(window.pollEvent(event))
 		{
-			if(event.type == Event::KeyReleased)
+			/*if(event.type == Event::KeyReleased)
 			{
 				acceptInput = true;
-			}
+			}*/
 		}
 
-		if(Keyboard::isKeyPressed(Keyboard::Escape))
-		{
-			window.close();
-		}
-
+		window.setView(view);
+		window.clear();
 		//display stuff
 		window.draw(text);
 		window.display();
