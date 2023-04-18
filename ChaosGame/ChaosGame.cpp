@@ -63,7 +63,8 @@ int main()
 		window.clear();
 
 		//Draw game scene
-		RectangleShape r{Vector2f{4, 4}}; //width, height. Center unintialized.
+		//RectangleShape r{Vector2f{4, 4}}; //width, height. Center unintialized.
+		CircleShape r(2);
 		for(size_t i = 0; i < vertices.size(); i++)
 		{
 			r.setPosition(Vector2f{vertices.at(i).x, vertices.at(i).y});
