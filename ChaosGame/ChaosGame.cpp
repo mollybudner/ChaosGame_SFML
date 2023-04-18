@@ -10,7 +10,7 @@ int main()
 {
 	sf::View view(sf::FloatRect(0.f, 0.f, 1920.f, 1080.f));
 	VideoMode vm(1920, 1080);
-	RenderWindow window(vm, "Chaos Game", Style::Fullscreen);
+	RenderWindow window(vm, "Chaos Game", Style::Default);
 
 	Font font;
 	font.loadFromFile("fonts/arial.ttf");
