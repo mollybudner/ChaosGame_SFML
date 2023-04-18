@@ -6,8 +6,11 @@ using namespace std;
 
 int main()
 {
+	sf::View view(sf::FloatRect(0.f, 0.f, 1920.f, 1080.f));
 	VideoMode vm(1920, 1080);
 	RenderWindow window(vm, "Chaos Game", Style::Default);
+
+	bool paused = true;
 
 	Font font;
 	font.loadFromFile("fonts/arial.ttf");
@@ -21,12 +24,17 @@ int main()
 	text.setFillColor(Color::White);
 	FloatRect textRect = text.getLocalBounds();
 	text.setOrigin(textRect.left + textRect.width / 2.0f,
-		textRect.top);
-	text.setPosition(1920 / 2.0f, 1080 / 2.0f);
+		textRect.top + textRect.height / 2.0f);
+	text.setPosition(1920 / 2.0f, 1080 / 20.0f);
 
 
 	while(window.isOpen())
 	{
+		if(Keyboard::isKeyPressed(Keyboard::Escape))
+		{
+			window.close();
+		}
+
 		window.draw(text);
 		window.display();
 	}
