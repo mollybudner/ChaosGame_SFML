@@ -38,10 +38,12 @@ int main()
 		Event event;
 		while(window.pollEvent(event))
 		{
+			//handle window closing
 			if(event.type == Event::Closed)
 			{
 				window.close();
 			}
+			//handle mouse button clicks
 			if(event.type == sf::Event::MouseButtonPressed)
 			{
 				if(event.mouseButton.button == sf::Mouse::Left)
@@ -49,12 +51,14 @@ int main()
 					std::cout << "the left button was pressed" << std::endl;
 					std::cout << "mouse x: " << event.mouseButton.x << std::endl;
 					std::cout << "mouse y: " << event.mouseButton.y << std::endl;
-					if(vertices.size() <= 3)
+					if(vertices.size() < 3)
 					{
+						//fill vertices vector
 						vertices.push_back(Vector2f({(float)event.mouseButton.x, (float)event.mouseButton.y}));
 					}
 					else
 					{
+						//fill points vector when vertices vector is full
 						points.push_back(Vector2f({(float)event.mouseButton.x, (float)event.mouseButton.y}));
 					}
 				}
@@ -64,15 +68,22 @@ int main()
 		if(points.size() > 0)
 		{
 			srand(time(0));
+			//randomly select value from 0-2 to pick random vertex
 			int randVertex = rand() % 3;
 			int randX = vertices.at(randVertex).x;
 			int randY = vertices.at(randVertex).y;
 			int pointX = points.at(points.size() - 1).x;
 			int pointY = points.at(points.size() - 1).y;
 
+			//find midpoint and add to points vector
 			Vector2f midpoint = (Vector2f{(randX + pointX) / 2,
 					     (randY + pointY) / 2});
 			points.push_back(midpoint);
+
+			//Plot midpoints for game (fix me)
+			CircleShape m(2);
+			m.setPosition(midpoint);
+			window.draw(m);
 		}
 
 		//close game with ESC key
@@ -85,7 +96,6 @@ int main()
 		window.clear();
 
 		//Draw game scene
-		//RectangleShape r{Vector2f{4, 4}}; //width, height. Center unintialized.
 		CircleShape r(2);
 		for(size_t i = 0; i < vertices.size(); i++)
 		{
@@ -100,10 +110,3 @@ int main()
 
 	return 0;
 }
-
-
-//starting game need vertextVector and pointsVector
-//3 clicks push back coordinates to vertex vector
-//on 4th click, start game
-//pick midpoint (100 at a time?) using 4th click, then push back to points vector
-//draw vertices and points Rectangle r({1,1}); r.setPosition(pointsVect[i].x, pointsVect[i].y);
