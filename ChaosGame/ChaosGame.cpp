@@ -1,4 +1,4 @@
-//Chaos Game by Molly Budner
+//Chaos Game by Molly Budner and Natalie Lang
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include <iostream>
