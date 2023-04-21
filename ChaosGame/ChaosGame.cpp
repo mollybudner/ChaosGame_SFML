@@ -66,7 +66,7 @@ int main()
 			srand(time(0));
 			int randVertex = rand() % 3;
 			Vector2f midpoint = ((vertices.at(randVertex).x + points.at(points.size() - 1).x / 2),
-						((vertices.at(randVertex).y + points.at(points.size() - 1).y) / 2));
+						(vertices.at(randVertex).y + points.at(points.size() - 1).y / 2));
 			points.push_back(midpoint);
 		}
 
