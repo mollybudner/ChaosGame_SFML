@@ -65,8 +65,13 @@ int main()
 		{
 			srand(time(0));
 			int randVertex = rand() % 3;
-			Vector2f midpoint = ((vertices.at(randVertex).x + points.at(points.size() - 1).x / 2),
-						(vertices.at(randVertex).y + points.at(points.size() - 1).y / 2));
+			int randX = vertices.at(randVertex).x;
+			int randY = vertices.at(randVertex).y;
+			int pointX = points.at(points.size() - 1).x;
+			int pointY = points.at(points.size() - 1).y;
+
+			Vector2f midpoint = (Vector2f{(randX + pointX) / 2,
+					     (randY + pointY) / 2});
 			points.push_back(midpoint);
 		}
 
