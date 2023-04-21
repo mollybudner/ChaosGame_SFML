@@ -61,15 +61,15 @@ int main()
 			}
 		}
 
-/*		if(points.size() > 0)
+		if(points.size() > 0)
 		{
 			srand(time(0));
 			int randVertex = rand() % 3;
-			Vector2f midpoint = (vertices.at(randVertex).x + (float)points.at(points.size() - 1).x / 2),
-						((vertices.at(randVertex).y + (float)points.at(points.size() - 1).y) / 2);
+			Vector2f midpoint = ((vertices.at(randVertex).x + points.at(points.size() - 1).x / 2),
+						((vertices.at(randVertex).y + points.at(points.size() - 1).y) / 2));
 			points.push_back(midpoint);
 		}
-*/
+
 		//close game with ESC key
 		if(Keyboard::isKeyPressed(Keyboard::Escape))
 		{
